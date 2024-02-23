@@ -4,16 +4,50 @@ import openai
 
 class PoeticAssistant:
     def __init__(self, api_key):
+        """
+        Initialize the PoeticAssistant class with the OpenAI API key.
+
+        Args:
+        api_key (str): The API key for accessing the OpenAI API.
+        """
         self.client = openai.OpenAI(api_key=api_key)
         self.system_message = "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."
 
     def compose_poem(self, topic):
+        """
+        Generate a poem that explains a given programming concept.
+
+        Args:
+        topic (str): The programming concept to be explained in the poem.
+
+        Returns:
+        str: The generated poem.
+        """
         return self.compose_content(topic, "Compose a poem that explains the concept of {topic} in programming.")
 
     def compose_story(self, topic):
+        """
+        Generate a short story involving a given programming concept.
+
+        Args:
+        topic (str): The programming concept to be included in the story.
+
+        Returns:
+        str: The generated short story.
+        """
         return self.compose_content(topic, "Compose a short story that involves the concept of {topic} in programming.")
 
     def compose_content(self, topic, prompt):
+        """
+        Compose content based on a given prompt using the OpenAI API.
+
+        Args:
+        topic (str): The programming concept to be included in the content.
+        prompt (str): The prompt for generating the content.
+
+        Returns:
+        str: The generated content based on the prompt.
+        """
         try:
             completion = self.client.chat.completions.create(
                 model="gpt-3.5-turbo",
